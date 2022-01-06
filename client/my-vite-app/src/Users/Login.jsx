@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { DataContext } from "../App";
 import axios from "axios";
@@ -68,29 +68,34 @@ function Login() {
 
   // RENDER
   if (!!user?._id === true) {
-    return <div>{`${user?.username} is logged in!`}</div>;
+    return <Navigate to="/" />;
   }
   return (
     <div className="login-page">
-      <h1>这个是 Login Page!</h1>
-      <NavLink to={"/"}>
-        <p>Back to Main Page</p>
-      </NavLink>
-      <NavLink to={"/register"}>
-        <p>Not a user? Sign up today!</p>
-      </NavLink>
-      <div className="login">
-      <form className="login-form" onSubmit={logIn}>
-        <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username</label>
-            <input type="text" id="username" name="username" onChange={typeUsername} />
-        </div>
-        <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password"  id="password" name="password" onChange={typePassword}/>
-        </div>
-        <button type="submit" className="btn btn-primary">Log In</button>
-      </form>
+
+      
+      <div className="container-sm mx-auto my-3">
+        <NavLink to={"/"}>
+          <button type="button" className="btn btn-success mx-2">Back to Main Page</button>
+        </NavLink>
+        <NavLink to={"/register"}>
+          <button type="button" className="btn btn-success mx-2">Not a user? Sign up today!</button>
+        </NavLink>
+      </div>
+      
+      <div className="container-sm alert alert-warning rounded">
+        <h1>Login</h1>
+        <form className="login-form" onSubmit={logIn}>
+          <div className="mb-3">
+              <label htmlFor="username" className="form-label">Username : </label>
+              <input type="text" id="username" name="username" onChange={typeUsername} />
+          </div>
+          <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password : </label>
+              <input type="password"  id="password" name="password" onChange={typePassword}/>
+          </div>
+          <button type="submit" className="btn btn-primary">Log In</button>
+        </form>
       </div>
     </div>
   );

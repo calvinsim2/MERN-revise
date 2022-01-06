@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { DataContext } from "../App";
 import axios from "axios";
@@ -9,6 +9,7 @@ function Register() {
 
     const URL = "/api/users/";
 
+  const { user } = useContext(DataContext);
   const [name, setName] = useState("");
   const [inputpassword, setInputPassword] = useState("");
   const [inputdisplayName, setInputDisplayName] = useState("");
@@ -80,41 +81,51 @@ function Register() {
         }
   };
  }
-
-   return (
-       <>
-       <div className="login-page">
-            <h1>Join us today!</h1>
-      <NavLink to={"/"}>
-        <p>Back to Main Page</p>
-      </NavLink>
-      <NavLink to={"/login"}>
-        <p>Already a user? Log in here!</p>
-      </NavLink>
-      <div className="register">
-      <form className="register-form" onSubmit={CreateUser}>
-        <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username</label>
-            <input type="text" id="username" name="username" onChange={typeName} />
-        </div>
-        <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password"  id="password" name="password" onChange={typePassword}/>
-        </div>
-        <div className="mb-3">
-            <label htmlFor="display_name" className="form-label">Display Name</label>
-            <input type="text" id="display_name" name="display_name" onChange={typeDisplayName} />
-        </div>
-        <div className="mb-3">
-            <label htmlFor="occupation" className="form-label">Occupation</label>
-            <input type="text" id="occupation" name="occupation" onChange={typeOccupation} />
-        </div>
-        <button type="submit" className="btn btn-primary">Register Account</button>
-      </form>
+ if (!!user?._id) {
+  return <Navigate to="/" />;
+ } 
+ 
+ else {
+  return (
+    <div className="register-page">
+       
+       <div className="container-sm mx-auto my-3">
+        <NavLink to={"/"}>
+          <button type="button" className="btn btn-success mx-2">Back to Main Page</button>
+        </NavLink>
+        <NavLink to={"/login"}>
+          <button type="button" className="btn btn-success mx-2">Already a user? Log in here!</button>
+        </NavLink>
+       </div>
+            
+      
+      <div className="container-sm alert alert-info rounded">
+        <h1>Join us today!</h1>
+        <form className="register-form" onSubmit={CreateUser}>
+          <div className="mb-3">
+              <label htmlFor="username" className="form-label">Username :</label>
+              <input type="text" id="username" name="username" onChange={typeName} />
+          </div>
+          <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password :</label>
+              <input type="password"  id="password" name="password" onChange={typePassword}/>
+          </div>
+          <div className="mb-3">
+              <label htmlFor="display_name" className="form-label">Display Name :</label>
+              <input type="text" id="display_name" name="display_name" onChange={typeDisplayName} />
+          </div>
+          <div className="mb-3">
+              <label htmlFor="occupation" className="form-label">Occupation :</label>
+              <input type="text" id="occupation" name="occupation" onChange={typeOccupation} />
+          </div>
+          <button type="submit" className="btn btn-primary">Register Account</button>
+        </form>
       </div>
-        </div>
-       </>
+  
+    </div>
    )
+ }
+   
 }
 
 export default Register

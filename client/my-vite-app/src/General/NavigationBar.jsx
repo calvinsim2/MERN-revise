@@ -64,9 +64,6 @@ const Navigationbar = function(props) {
       </>,
     ]; 
         
-      
-    
-
 
     return (
       
@@ -74,6 +71,7 @@ const Navigationbar = function(props) {
         <Navbar.Brand href="/">DIY Electricals</Navbar.Brand>    
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
+          <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/projects">Projects</Nav.Link>
             <Nav.Link href="/components">Components</Nav.Link>
           </Nav>

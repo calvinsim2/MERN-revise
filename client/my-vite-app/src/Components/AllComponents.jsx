@@ -40,7 +40,7 @@ function AllTheComponents() {
     <div className="allcomponent-div">
       <div className="container-sm mx-auto my-3">
         {!!user?._id ? <NavLink to={`/components/new`} >
-        <button type="button" className="btn btn-success mx-2">Add New Component</button>
+        
       </NavLink> : null}
       </div>
 

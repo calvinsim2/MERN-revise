@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+
 import axios from "axios";
 import './ComponentsCss/Components.css'
 
@@ -22,7 +23,7 @@ const IndividualComponent = function(props) {
         fetchUser();
       }, []);
 
-
+    
     return (
       <div className="component-div">
         <div className="container-sm mx-auto my-3">

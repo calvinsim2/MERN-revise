@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { DataContext } from "../App";
 import axios from "axios";
@@ -41,56 +41,66 @@ const IndividualProject = function(props) {
     postedUserId = projectDetails?.posted_by?._id
 }
 
-    return (
-        <div className="project-div">
-            <div className="container-sm mx-auto my-3">
-                <NavLink to="/projects">
-                <button type="button" className="btn btn-warning mx-2">Return to Project List</button>
-                </NavLink>
-            </div>
-            
-            <div className="container-sm alert alert-primary mx-auto my-3">
-              <div className="header mx-auto my-3">
-                <h3 className="text-center my-3">{projectDetails.title}</h3>
-                <p className="blockquote-footer text-center my-1">{projectDetails.briefing}</p>
-              </div>
-                
-                <div className="card mx-auto my-3" style={{width: "20rem"}}>
-                    <img src={projectDetails?.img} className="card-img-top" alt={projectDetails?.name} />
-                    <div className="card-body mx-auto my-3">
-                        {user?._id === postedUserId ? <a href={`/projects/edit/${projectDetails?._id}`} className="btn btn-primary">Edit Project</a> : null}
-                    </div>
+    if (!!user?._id === false) {
+        return <Navigate to="/login" />;
+    }
+    else {
+        return (
+            <div className="project-div">
+                <div className="container-sm mx-auto my-3">
+                    <NavLink to="/projects">
+                    <button type="button" className="btn btn-warning mx-2">Return to Project List</button>
+                    </NavLink>
                 </div>
-                <p className="text-center fw-bold my-3">
-                    Posted by : <NavLink to={`/users/${postedUserId}`}>
-                                    {projectDetails?.posted_by?.display_name}
-                                </NavLink> ({projectDetails?.posted_by?.occupation})
-                </p>
+                
+                <div className="container-sm alert alert-primary mx-auto my-3">
+                  <div className="header mx-auto my-3">
+                    <h3 className="text-center my-3">{projectDetails.title}</h3>
+                    <p className="blockquote-footer text-center my-1">{projectDetails.briefing}</p>
+                  </div>
+                    
+                    <div className="card mx-auto my-3" style={{width: "20rem"}}>
+                        <img src={projectDetails?.img} className="card-img-top" alt={projectDetails?.name} />
+                        <div className="card-body mx-auto my-3">
+                            {user?._id === postedUserId ? 
+                                <NavLink to={`/projects/edit/${projectDetails?._id}`} >
+                                    <button type="button" className="btn btn-primary mx-2">Edit Project</button>
+                                </NavLink> : null}
+                        </div>
+                    </div>
+                    <p className="text-center fw-bold my-3">
+                        Posted by : <NavLink to={`/users/${postedUserId}`}>
+                                        {projectDetails?.posted_by?.display_name}
+                                    </NavLink> ({projectDetails?.posted_by?.occupation})
+                    </p>
+                </div>
+                
+                <div className="container-sm alert alert-primary mx-auto my-3">
+                <h4>Learning Points:</h4>
+                    <ul>
+                    {goalDetails}
+                    </ul>
+                </div>
+                
+                <div className="container-sm alert alert-primary mx-auto my-3">
+                    <h4>Description</h4>
+                    <p>{projectDetails.description}</p>   
+                </div>
+                
+                
+                <div className="container-sm alert alert-primary mx-auto my-3">
+                    <h4>Components Required:</h4>
+                    <ul>    
+                    {componentDetails}
+                    </ul>
+                </div>
+                
             </div>
             
-            <div className="container-sm alert alert-primary mx-auto my-3">
-            <h4>Learning Points:</h4>
-                <ul>
-                {goalDetails}
-                </ul>
-            </div>
-            
-            <div className="container-sm alert alert-primary mx-auto my-3">
-                <h4>Description</h4>
-                <p>{projectDetails.description}</p>   
-            </div>
-            
-            
-            <div className="container-sm alert alert-primary mx-auto my-3">
-                <h4>Components Required:</h4>
-                <ul>    
-                {componentDetails}
-                </ul>
-            </div>
-            
-        </div>
-        
-    )
+        )
+    }
+
+    
 }
 
 export default IndividualProject;

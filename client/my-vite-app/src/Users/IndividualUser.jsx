@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, Navigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../App";
 import axios from "axios";
@@ -59,38 +59,45 @@ function UserPage() {
             joinDate = userDetails?.joined_date.substring(0, 10)
         }
 
-    return (
-        <div className="user-show-div">
-            <div className="container-sm my-3 mx-auto rounded">
-                <NavLink to={`/projects`} >
-                    <button type="button" className="btn btn-success mx-2">View Community Projects</button>
-                </NavLink>
-            </div>
-            <div className="container-sm alert alert-success mx-auto">
-            <div className="row mx-auto">
-                <div className="card mx-auto my-2" style={{width: "20rem"}}>
-                    <img src={userDetails?.img} className="card-img-top" alt={userDetails?.name} />
-                    <div className="card-body mx-auto">
-                        {user?._id === userDetails?._id ? <a href={`/users/edit/${userDetails?._id}`} className="btn btn-primary">Edit User</a> : null}
+    if (!!user?._id === false) {
+          
+        return <Navigate to="/login" />;
+    }
+    else {
+        return (
+            <div className="user-show-div">
+                <div className="container-sm my-3 mx-auto rounded">
+                    <NavLink to={`/projects`} >
+                        <button type="button" className="btn btn-success mx-2">View Community Projects</button>
+                    </NavLink>
+                </div>
+                <div className="container-sm alert alert-success mx-auto">
+                <div className="row mx-auto">
+                    <div className="card mx-auto my-2" style={{width: "20rem"}}>
+                        <img src={userDetails?.img} className="card-img-top" alt={userDetails?.name} />
+                        <div className="card-body mx-auto">
+                            {user?._id === userDetails?._id ? <a href={`/users/edit/${userDetails?._id}`} className="btn btn-primary">Edit User</a> : null}
+                        </div>
                     </div>
+                </div>    
+                <div className="row mx-auto my-2 border border-warning rounded border border-2">
+                    <div className="col mx-auto border border-warning rounded border border-2">
+                        <p className="mx-auto my-2 fw-bold">Name: {userDetails?.display_name}</p>
+                    </div>
+                    <div className="col mx-auto border border-warning rounded border border-2">
+                        <p className="mx-auto my-2 fw-bold">Occupation: {userDetails?.occupation}</p>
+                    </div>
+                    <div className="col mx-auto border border-warning rounded border border-2">
+                        <p className="mx-auto my-2 fw-bold">Joined Date (YYYY-MM-DD): {joinDate}</p>
+                    </div>
+                    
                 </div>
-            </div>    
-            <div className="row mx-auto my-2 border border-warning rounded border border-2">
-                <div className="col mx-auto border border-warning rounded border border-2">
-                    <p className="mx-auto my-2 fw-bold">Name: {userDetails?.display_name}</p>
                 </div>
-                <div className="col mx-auto border border-warning rounded border border-2">
-                    <p className="mx-auto my-2 fw-bold">Occupation: {userDetails?.occupation}</p>
-                </div>
-                <div className="col mx-auto border border-warning rounded border border-2">
-                    <p className="mx-auto my-2 fw-bold">Joined Date (YYYY-MM-DD): {joinDate}</p>
-                </div>
-                
             </div>
-            </div>
-        </div>
-        
-    )
+            
+        )
+    }
+    
 }
 
 export default UserPage

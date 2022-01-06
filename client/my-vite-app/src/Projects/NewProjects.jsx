@@ -1,5 +1,5 @@
 import { React, useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -82,87 +82,100 @@ function NewProjects() {
         },
       });  
 
-      return (
-        <div className="project-new-div">
-            <div className="container-sm mx-auto my-3">
-                <NavLink to={`/projects`} >
-                    <button type="button" className="btn btn-success mx-2">Return to Projects Page</button>
-                </NavLink>
-            </div>
-
-        <div className="container-sm alert alert-primary">
-        <form onSubmit={formik.handleSubmit}>
-        
-            <div class="mb-3">
-                <label htmlFor="title" className="col-form-label">Project Name</label>
-                <input type="text" id="title" name="title" className="form-control" value={formik.values.name}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.title && Boolean(formik.errors.title)
-                    }
-                    helperText={formik.touched.title && formik.errors.title} />
-            </div>
-        
-
-        
-            <div class="mb-3">
-                <label htmlFor="img" className="col-form-label">Project's Image</label>
-                <input type="text" id="img" name="img" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.img}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.img && Boolean(formik.errors.img)
-                    }
-                    helperText={formik.touched.img && formik.errors.img} />
-            </div>
-        
-
-        
-            <div class="mb-3">
-                <label htmlFor="briefing" className="col-form-label">Overview</label>
+    if (!!user?._id === false) {
+        return <Navigate to="/login" />
+    }
+    else {
+        return (
+            <div className="project-new-div">
+                <div className="container-sm mx-auto my-3">
+                    <NavLink to={`/projects`} >
+                        <button type="button" className="btn btn-success mx-2">Return to Projects Page</button>
+                    </NavLink>
+                </div>
+    
+            <div className="container-sm alert alert-primary">
+            <form onSubmit={formik.handleSubmit}>
             
-                <textarea type="message" cols="50" rows="3" id="briefing" name="briefing" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.briefing}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.briefing && Boolean(formik.errors.briefing)
-                    }
-                    helperText={formik.touched.briefing && formik.errors.briefing}/>
+                <div class="mb-3">
+                    <label htmlFor="title" className="col-form-label">Project Name</label>
+                    <input type="text" id="title" name="title" className="form-control" value={formik.values.name}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.title && Boolean(formik.errors.title)
+                        }
+                        helperText={formik.touched.title && formik.errors.title} />
+                    <div id="title" class="form-text">Your project title name</div>
+                </div>
+            
+                <div class="mb-3">
+                    <label htmlFor="img" className="col-form-label">Project's Image</label>
+                    <input type="text" id="img" name="img" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.img}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.img && Boolean(formik.errors.img)
+                        }
+                        helperText={formik.touched.img && formik.errors.img} />
+                    <div id="title" class="form-text">Your project's image</div>
+                </div>
+            
+                <div class="mb-3">
+                    <label htmlFor="briefing" className="col-form-label">Overview</label>
+                
+                    <textarea type="message" cols="50" rows="3" id="briefing" name="briefing" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.briefing}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.briefing && Boolean(formik.errors.briefing)
+                        }
+                        helperText={formik.touched.briefing && formik.errors.briefing}/>
+                    <div id="title" class="form-text">Your project's briefing</div>
+                </div>
+                <div class="mb-3">
+                    <label htmlFor="goal" className="col-form-label">Project's Goal</label>
+                    <input type="text" id="goal" name="goal" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.goal}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.goal && Boolean(formik.errors.goal)
+                        }
+                        helperText={formik.touched.goal && formik.errors.goal}/>
+                    <div id="title" class="form-text">Main aim for doing this project</div>
+                    <div id="title" class="form-text">Please use commas ',' to separate points</div>
+                    <div id="title" class="form-text">e.g. Understand ohms law , Understand circuits.</div>
+                </div>
+                <div class="mb-3">
+                    <label htmlFor="description" className="col-form-label">Project's Steps</label>
+                    <textarea type="message" cols="50" rows="5" id="description" name="description" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.description}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.description && Boolean(formik.errors.description)
+                        }
+                        helperText={formik.touched.description && formik.errors.description}/>
+                    <div id="title" class="form-text">Steps for project.</div>
+                </div>
+            
+                <div class="mb-3">
+                    <label htmlFor="components" className="col-form-label">Components Included in Project</label>
+                    <input type="text" id="components" name="components" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.components}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.components && Boolean(formik.errors.components)
+                        }
+                        helperText={formik.touched.components && formik.errors.components}/>
+                    <div id="title" class="form-text">Components required for project</div>
+                    <div id="title" class="form-text">Please use commas ',' to separate points</div>
+                    <div id="title" class="form-text">e.g. Resistor , Inductors</div>
+                </div>
+            
+    
+            <button type="submit" className="btn btn-primary">Share Project</button>
+        </form>
             </div>
-            <div class="mb-3">
-                <label htmlFor="goal" className="col-form-label">Project's Goal</label>
-                <input type="text" id="goal" name="goal" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.goal}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.goal && Boolean(formik.errors.goal)
-                    }
-                    helperText={formik.touched.goal && formik.errors.goal}/>
-            </div>
-            <div class="mb-3">
-                <label htmlFor="description" className="col-form-label">Project's Steps</label>
-                <textarea type="message" cols="50" rows="5" id="description" name="description" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.description}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.description && Boolean(formik.errors.description)
-                    }
-                    helperText={formik.touched.description && formik.errors.description}/>
-            </div>
-        
-            <div class="mb-3">
-                <label htmlFor="components" className="col-form-label">Components Included in Project</label>
-                <input type="text" id="components" name="components" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.components}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.components && Boolean(formik.errors.components)
-                    }
-                    helperText={formik.touched.components && formik.errors.components}/>
-            </div>
-        
-
-        <button type="submit" className="btn btn-primary">Share Project</button>
-    </form>
+            
         </div>
-        
-    </div>
-      )
+          )
+      } 
+    
+      
 }
 
 export default NewProjects

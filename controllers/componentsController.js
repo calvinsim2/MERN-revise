@@ -2,6 +2,7 @@ const express = require("express");
 const componentsRouter = express.Router();
 const seedComponents = require("../seedData/seedComponents")
 const Components = require("../models/components")
+const passport = require('passport')
 
 // SEED
 
@@ -45,7 +46,7 @@ componentsRouter.get("/:id", (req,res) => {
 
 // CREATE
 
-componentsRouter.post("/", (req,res) => {
+componentsRouter.post("/", passport.authenticate('jwt', {session : false}),(req,res) => {
 
     Components.create(req.body, (err, createdComponent) => {
         if (err) {
@@ -59,7 +60,7 @@ componentsRouter.post("/", (req,res) => {
 
 //UPDATE 
 
-componentsRouter.put("/:id", async (req,res) => {
+componentsRouter.put("/:id", passport.authenticate('jwt', {session : false}),async (req,res) => {
     const { id } = req.params
     const updatedComponentDetails = req.body
 
@@ -75,7 +76,7 @@ componentsRouter.put("/:id", async (req,res) => {
 
 // DESTROY
 
-componentsRouter.delete("/:id",  (req,res) => {
+componentsRouter.delete("/:id", passport.authenticate('jwt', {session : false}),(req,res) => {
     const {id} = req.params;
 
     Projects.findByIdAndDelete(id, (err, deletedComponents) => {
