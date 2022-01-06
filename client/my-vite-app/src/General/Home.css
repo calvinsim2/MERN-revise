@@ -1,0 +1,20 @@
+.first {
+    background: url('https://imgur.com/fJOCi4H.jpg');
+    color: rgb(238, 12, 23);
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.second {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.block1,
+.block2 {
+    text-align: center;
+    background: greenyellow;
+    border: 1px solid black;
+    border-radius: 5px;
+}

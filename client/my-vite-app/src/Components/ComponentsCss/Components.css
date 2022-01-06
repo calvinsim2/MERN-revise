@@ -1,0 +1,10 @@
+.all-Components {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.ind-page {
+    margin-left: auto;
+    margin-right: auto;
+}
