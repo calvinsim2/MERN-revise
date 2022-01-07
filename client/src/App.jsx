@@ -6,12 +6,12 @@ import axios from "axios";
 import './App.css'
 import NavigationBar from './General/NavigationBar'
 import Home from './General/Home'
-import About from './General/About.jsx'
-import AllTheProjects from './Projects/AllProjects.jsx'
+import About from './General/About'
+import AllTheProjects from './Projects/AllProjects'
 import NewProjects from './Projects/NewProjects';
 import EditProjects from './Projects/EditProjects';
 import IndividualProject from './Projects/IndividualProject'
-import AllTheComponents from './Components/AllComponents.jsx'
+import AllTheComponents from './Components/AllComponents'
 import IndividualComponent from './Components/IndividualComponent'
 import NewComponents from './Components/NewComponents';
 import Login from './Users/Login'
