@@ -1,6 +1,6 @@
 A self-revision practice of the MERN stack. 
 
-DIY ELECTRICALS
+Project Idea - DIY ELECTRICALS
 
 This is a simple application for electrical/electronic enthusiasts 
 to share their knowledge on common electrical components, and self DIY projects
@@ -10,12 +10,13 @@ Using this application, users can post projects to share with the community, or 
 common components details for community to view.
 
 
-//===================================================================================
-
-In this MERN revise stack,
-
+In this MERN revise stack:
 - For backend authentication, passport and jwt is used instead of sessions, which was utilised 
 in my previous project
 - For css, bootstrap is used instead of material UI.
+
+
+Tech Stack:
+MERN, bootstrap 5
 
 
