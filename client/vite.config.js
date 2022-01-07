@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-          target: 'https://mernrevise.herokuapp.com/',
+          target: 'http://localhost:3001',
           changeOrigin: true,
           secure: false,      
           ws: true,
