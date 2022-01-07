@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router"
 import { createContext } from "react";
 import axios from "axios";
 import './App.css'
-import Navigationbar from './General/Navigationbar'
+import NavigationBar from './General/NavigationBar'
 import Home from './General/Home'
 import About from './General/About.jsx'
 import AllTheProjects from './Projects/AllProjects.jsx'
@@ -56,7 +56,7 @@ function App() {
     <>
       <DataContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
-        <Navigationbar />
+        <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
