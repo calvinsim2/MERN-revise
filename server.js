@@ -6,7 +6,7 @@ const session = require("express-session");
 const cookieParser = require('cookie-parser')
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI
 const SECRET = process.env.SECRET;
 
@@ -43,9 +43,13 @@ app.use("/api/users", usersController);
 app.get("/", (req, res) => {
     res.json("Start liao!");
   });
+
+app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+});
   
-  //* LISTEN
+//* LISTEN
   
-  app.listen(port, () => {
+app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
-  });
+});
