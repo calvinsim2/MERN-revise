@@ -40,9 +40,9 @@ app.use("/api/users", usersController);
 
 //* ROUTES
 
-// app.get("/", (req, res) => {
-//     res.json("Start liao!");
-//   });
+app.get("/", (req, res) => {
+    res.json("Start liao!");
+  });
 
 app.get("*", function (request, response) {
     response.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
