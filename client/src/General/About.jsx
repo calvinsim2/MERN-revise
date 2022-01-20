@@ -9,11 +9,11 @@ function About() {
     <div className="About">
 
       {!!user?._id === false ? null :
-       <div className="container-sm alert alert-primary mx-auto my-1">
+       <div className="w-50 p-3 alert alert-primary mx-auto mb-3">
           <h3 className="my-1">Welcome {user?.display_name}</h3>
        </div> 
         }
-      <div className="container-sm alert alert-primary mx-auto my-3">
+      <div className="container-sm alert alert-primary mx-auto ">
               <div className="row mx-auto">
                 <div className="col mx-auto rounded">
                   <div className="card mx-auto my-2" style={{width: "17rem"}}>

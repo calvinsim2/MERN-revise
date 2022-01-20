@@ -1,7 +1,6 @@
-.all-projects {
+.all-users {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin: 0;
 }

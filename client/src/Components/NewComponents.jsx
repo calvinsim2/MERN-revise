@@ -95,9 +95,9 @@ function NewComponents() {
       else {
         return (
             <div className="component-new-div">
-                <div className="container-sm mx-auto my-3">
+                <div className="container-sm mx-auto mb-3">
                     <NavLink to={`/components`} >
-                        <button type="button" className="btn btn-success mx-2">Return to Component Page</button>
+                        <button type="button" className="btn btn-success mx-2 my-3">Return to Component Page</button>
                     </NavLink>
                 </div>
             

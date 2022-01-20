@@ -47,9 +47,9 @@ const IndividualProject = function(props) {
     else {
         return (
             <div className="project-div">
-                <div className="container-sm mx-auto my-3">
+                <div className="container-sm mx-auto mb-3">
                     <NavLink to="/projects">
-                    <button type="button" className="btn btn-warning mx-2">Return to Project List</button>
+                    <button type="button" className="btn btn-warning mx-2 my-3">Return to Project List</button>
                     </NavLink>
                 </div>
                 
@@ -75,20 +75,20 @@ const IndividualProject = function(props) {
                     </p>
                 </div>
                 
-                <div className="container-sm alert alert-primary mx-auto my-3">
+                <div className="container-sm alert alert-primary mx-auto my-0">
                 <h4>Learning Points:</h4>
                     <ul>
                     {goalDetails}
                     </ul>
                 </div>
                 
-                <div className="container-sm alert alert-primary mx-auto my-3">
+                <div className="container-sm alert alert-primary mx-auto my-0">
                     <h4>Description</h4>
                     <p>{projectDetails.description}</p>   
                 </div>
                 
                 
-                <div className="container-sm alert alert-primary mx-auto my-3">
+                <div className="container-sm alert alert-primary mx-auto my-0">
                     <h4>Components Required:</h4>
                     <ul>    
                     {componentDetails}

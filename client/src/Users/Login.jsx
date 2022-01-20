@@ -31,6 +31,8 @@ function Login() {
       password: !!inputPassword ? inputPassword : null,
     };
 
+    
+
     // find user at backend
     try {
       const response = await axios.post(URL, loginDetails);
@@ -74,25 +76,25 @@ function Login() {
     <div className="login-page">
 
       
-      <div className="container-sm mx-auto my-3">
+      <div className="w-50 p-3 mx-auto mb-3">
         <NavLink to={"/"}>
-          <button type="button" className="btn btn-success mx-2">Back to Main Page</button>
+          <button type="button" className="btn btn-success mx-2 my-2">Back to Main Page</button>
         </NavLink>
         <NavLink to={"/register"}>
-          <button type="button" className="btn btn-success mx-2">Not a user? Sign up today!</button>
+          <button type="button" className="btn btn-success mx-2 my-2">Not a user? Sign up today!</button>
         </NavLink>
       </div>
       
-      <div className="container-sm alert alert-warning rounded">
+      <div className="w-50 p-3 mx-auto alert alert-success rounded">
         <h1>Login</h1>
         <form className="login-form" onSubmit={logIn}>
           <div className="mb-3">
               <label htmlFor="username" className="form-label">Username : </label>
-              <input type="text" id="username" name="username" onChange={typeUsername} />
+              <input type="text" className="form-control" id="username" name="username" onChange={typeUsername} />
           </div>
           <div className="mb-3">
               <label htmlFor="password" className="form-label">Password : </label>
-              <input type="password"  id="password" name="password" onChange={typePassword}/>
+              <input type="password"  className="form-control" id="password" name="password" onChange={typePassword}/>
           </div>
           <button type="submit" className="btn btn-primary">Log In</button>
         </form>

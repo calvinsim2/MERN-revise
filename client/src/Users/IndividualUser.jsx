@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useParams, Navigate } from "react-router-dom";
+import { NavLink, useParams, useNavigate, Navigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../App";
 import axios from "axios";
@@ -13,6 +13,7 @@ function UserPage() {
     const individualUserURL = `/api/users/${params?.id}`;
     const [userDetails, setUserDetails] = useState([])
     const [state, setState] = useState("pending")
+    let navigate = useNavigate();
     let joinDate;
 
     useEffect(() => {
@@ -59,6 +60,44 @@ function UserPage() {
             joinDate = userDetails?.joined_date.substring(0, 10)
         }
 
+        const onDelete = async () => {
+            const deleteUserURL = `/api/users/${userDetails?._id}`
+
+            try {
+                const response = await axios.delete(deleteUserURL);
+                // Success 🎉
+                const data = response.data;
+                console.log("this is what we get from server: ", data);
+                navigate(`/admin`)
+
+                
+            } catch (error) {
+                // Error 😨
+                if (error.response) {
+                    /*
+                     * The request was made and the server responded with a
+                     * status code that falls out of the range of 2xx
+                     */
+                    alert("Error Deleting");
+                    console.log(error.response.data);
+                    
+          
+                } else if (error.request) {
+                    /*
+                     * The request was made but no response was received, `error.request`
+                     * is an instance of XMLHttpRequest in the browser and an instance
+                     * of http.ClientRequest in Node.js
+                     */
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request and triggered an Error
+                    console.log('Error', error.message);
+                }
+                console.log(error);
+                }
+
+        }
+
     if (!!user?._id === false) {
           
         return <Navigate to="/login" />;
@@ -66,17 +105,30 @@ function UserPage() {
     else {
         return (
             <div className="user-show-div">
-                <div className="container-sm my-3 mx-auto rounded">
+                <div className="container-sm mb-3 mx-auto rounded">
                     <NavLink to={`/projects`} >
-                        <button type="button" className="btn btn-success mx-2">View Community Projects</button>
+                        <button type="button" className="btn btn-success mx-2 my-3">View Community Projects</button>
                     </NavLink>
+                    {!!user.is_admin ? 
+                        <NavLink to={`/admin`} >
+                            <button type="button" className="btn btn-secondary mx-2">Return to Users Page</button>
+                        </NavLink> : null
+                    }
                 </div>
                 <div className="container-sm alert alert-success mx-auto">
                 <div className="row mx-auto">
                     <div className="card mx-auto my-2" style={{width: "20rem"}}>
                         <img src={userDetails?.img} className="card-img-top" alt={userDetails?.name} />
                         <div className="card-body mx-auto">
-                            {user?._id === userDetails?._id ? <a href={`/users/edit/${userDetails?._id}`} className="btn btn-primary">Edit User</a> : null}
+                            {user?._id === userDetails?._id ? 
+                            <a href={`/users/edit/${userDetails?._id}`} 
+                            className="btn btn-primary">Edit User</a> : null}
+
+                            {!!user?.is_admin ? 
+                                <button type="button" className="btn btn-danger mx-2 my-2" onClick={onDelete}>Delete User</button>
+                                 : null }
+                            
+                            
                         </div>
                     </div>
                 </div>    

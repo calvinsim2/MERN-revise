@@ -46,6 +46,12 @@ const Navigationbar = function(props) {
 
     const loggedInButtons = [
       <>
+        {!!user.is_admin ? 
+          <NavLink to={`/admin`} >
+          <button type="button" className="btn btn-secondary mx-2">Users</button>
+          </NavLink> : null
+        }
+        
         <NavLink to={`/users/${user._id}`} >
         <button type="button" className="btn btn-warning mx-2">My Account</button>
         </NavLink>
@@ -67,9 +73,9 @@ const Navigationbar = function(props) {
 
     return (
       
-        <Navbar bg="info" expand="md">
+    <Navbar bg={!!user?.is_admin ? "success" : "info"} expand="md">
         <Navbar.Brand href="/">DIY Electricals</Navbar.Brand>    
-        <Navbar.Collapse id="basic-navbar-nav">
+        
           <Nav className="me-auto">
           <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/projects">Projects</Nav.Link>
@@ -82,7 +88,7 @@ const Navigationbar = function(props) {
             loggedInButtons}
           </span>
           
-        </Navbar.Collapse>
+        
       
     </Navbar>
       

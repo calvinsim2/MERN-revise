@@ -7,6 +7,7 @@ import './App.css'
 import NavigationBar from './General/NavigationBar'
 import Home from './General/Home'
 import About from './General/About'
+import Footer from './General/Footer'
 import AllTheProjects from './Projects/AllProjects'
 import NewProjects from './Projects/NewProjects';
 import EditProjects from './Projects/EditProjects';
@@ -14,11 +15,13 @@ import IndividualProject from './Projects/IndividualProject'
 import AllTheComponents from './Components/AllComponents'
 import IndividualComponent from './Components/IndividualComponent'
 import NewComponents from './Components/NewComponents';
+import EditComponents from './Components/EditComponents';
+import Administrator from './Users/Administrator';
 import Login from './Users/Login'
 import Register from './Users/Register';
 import UserPage from './Users/IndividualUser';
 import UserEdit from './Users/UserEdit';
-
+import './General/GeneralCss/General.css'
 
 
 
@@ -57,9 +60,11 @@ function App() {
       <DataContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <NavigationBar />
+        <div className="gen-bg">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/admin" element={<Administrator />} />
           <Route path="/login" element={<Login />} />
           <Route path="/users/:id" element={<UserPage />} />
           <Route path="/users/edit/:id" element={<UserEdit />} />
@@ -70,8 +75,11 @@ function App() {
           <Route path="/projects/:id" element={<IndividualProject />} />
           <Route path="/components" element={<AllTheComponents />} />
           <Route path="/components/new" element={<NewComponents />} />
+          <Route path="/components/edit/:id" element={<EditComponents />} />
           <Route path="/components/:id" element={<IndividualComponent />} />
         </Routes>
+        </div>
+        <Footer />
       </BrowserRouter>
       </DataContext.Provider>
     </>

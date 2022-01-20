@@ -38,13 +38,13 @@ function AllTheComponents() {
 
   return (
     <div className="allcomponent-div">
-      <div className="container-sm mx-auto my-3">
+      <div className="container-sm mx-auto ">
         {!!user?._id ? <NavLink to={`/components/new`} >
-        
+        <button type="button" className="btn btn-secondary mx-2 my-3" >Add new Component</button>
       </NavLink> : null}
       </div>
 
-      <div className="container-sm alert alert-secondary all-Components">
+      <div className="container-sm alert alert-secondary all-Components ">
         {status === "resolved" ? listComponents : "Loading... Please wait"}
       </div>
     </div>

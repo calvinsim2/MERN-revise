@@ -68,7 +68,7 @@ function EditProjects() {
   };
 
   //==================== FORMIK RELATED ======================
-  const validationSchema = yup.object({
+  const validationSchema = yup.object().shape({
     title: yup.string("Enter Title").required("Title is required"),
     img: yup
       .string("Enter display picture")
@@ -102,7 +102,7 @@ function EditProjects() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       updateCurrentData(values);
-      navigate(`/projects/${currentData?._id}`);
+      navigate(`/projects/${currentData?._id}`)
 
     },
   });
@@ -115,21 +115,18 @@ function EditProjects() {
   else {
     return (
       <div className="project-edit-div">
-        <div className="container-sm mx-auto my-3">
+        <div className="container-sm mx-auto mb-3">
               <NavLink to={`/projects/${currentData?._id}`} >
-                  <button type="button" className="btn btn-success mx-2">Return to Projects Details</button>
+                  <button type="button" className="btn btn-success mx-2 my-3">Return to Projects Details</button>
               </NavLink>
           </div>
         <div className="container-sm alert alert-primary">
         <form onSubmit={formik.handleSubmit}>
           <div class="mb-3">
             <label for="title" className="form-label">Project Title</label>
-            <input type="text" className="form-control" id="title" aria-describedby="emailHelp" value={formik.values.title}
-                      onChange={formik.handleChange}
-                      error={
-                          formik.touched.title && Boolean(formik.errors.title)
-                      }
-                      helperText={formik.touched.title && formik.errors.title} />
+            <input type="text" className="form-control" id="title" aria-describedby="emailHelp" value={formik.values.title} onChange={formik.handleChange}/>
+              {formik.touched.title && formik.errors.title ? <p className="text-danger"> {formik.errors.title} </p> : null}
+                       
             <div id="title" className="form-text">Your project title name</div>
           </div>
   
@@ -137,59 +134,49 @@ function EditProjects() {
             <label for="img" className="form-label">Project's Image'</label>
             <input type="text" className="form-control" id="img" aria-describedby="emailHelp" value={formik.values.img}
                       onChange={formik.handleChange}
-                      error={
-                          formik.touched.img && Boolean(formik.errors.img)
-                      }
-                      helperText={formik.touched.img && formik.errors.img} />
-            <div id="title" class="form-text">Your project's image</div>
+                       />
+            {formik.touched.img && formik.errors.img ? <p className="text-danger"> {formik.errors.img} </p> : null}           
+            <div id="img" className="form-text">Your project's image</div>
           </div>
   
           <div className="mb-3">
-            <label for="briefing" class="form-label">Project's Briefing</label>
-            <textarea type="message" cols="50" rows="3" class="form-control" id="briefing" aria-describedby="emailHelp" value={formik.values.briefing}
+            <label for="briefing" className="form-label">Project's Briefing</label>
+            <textarea type="message" cols="50" rows="3" className="form-control" id="briefing" aria-describedby="emailHelp" value={formik.values.briefing}
                       onChange={formik.handleChange}
-                      error={
-                          formik.touched.briefing && Boolean(formik.errors.briefing)
-                      }
-                      helperText={formik.touched.briefing && formik.errors.briefing} />
-            <div id="title" class="form-text">Your project's briefing</div>
+                       />
+            {formik.touched.briefing && formik.errors.briefing ? <p className="text-danger"> {formik.errors.briefing} </p> : null}
+            <div id="briefing" className="form-text">Your project's briefing</div>
           </div>
   
           <div class="mb-3">
             <label for="goal" className="form-label">Project's Goal</label>
             <input type="text" className="form-control" id="goal" aria-describedby="emailHelp" value={formik.values.goal}
                       onChange={formik.handleChange}
-                      error={
-                          formik.touched.goal && Boolean(formik.errors.goal)
-                      }
-                      helperText={formik.touched.goal && formik.errors.goal} />
-            <div id="title" className="form-text">Main aim for doing this project</div>
-            <div id="title" className="form-text">Please use commas ',' to separate points</div>
-            <div id="title" className="form-text">e.g. Understand ohms law , Understand circuits.</div>
+                       />
+            {formik.touched.goal && formik.errors.goal ? <p className="text-danger"> {formik.errors.goal} </p> : null}           
+            <div id="goal" className="form-text">Main aim for doing this project</div>
+            <div id="goal" className="form-text">Please use commas ',' to separate points</div>
+            <div id="goal" className="form-text">e.g. Understand ohms law , Understand circuits.</div>
           </div>
   
           <div className="mb-3">
             <label for="description" className="form-label">Project's Description</label>
             <textarea type="message" cols="50" rows="5" className="form-control" id="description" aria-describedby="emailHelp" value={formik.values.description}
                       onChange={formik.handleChange}
-                      error={
-                          formik.touched.description && Boolean(formik.errors.description)
-                      }
-                      helperText={formik.touched.description && formik.errors.description} />
-            <div id="title" className="form-text">Steps for project.</div>
+                       />
+            {formik.touched.description && formik.errors.description ? <p className="text-danger"> {formik.errors.description} </p> : null}
+            <div id="description" className="form-text">Steps for project.</div>
           </div>
   
           <div className="mb-3">
             <label for="components" className="form-label">Project required Components</label>
             <input type="text" className="form-control" id="components" aria-describedby="emailHelp" value={formik.values.components}
                       onChange={formik.handleChange}
-                      error={
-                          formik.touched.components && Boolean(formik.errors.components)
-                      }
-                      helperText={formik.touched.components && formik.errors.components} />
-            <div id="title" className="form-text">Components required for project</div>
-            <div id="title" className="form-text">Please use commas ',' to separate points</div>
-            <div id="title" className="form-text">e.g. Resistor , Inductors</div>
+                       />
+            {formik.touched.components && formik.errors.components ? <p className="text-danger"> {formik.errors.components} </p> : null}
+            <div id="components" className="form-text">Components required for project</div>
+            <div id="components" className="form-text">Please use commas ',' to separate points</div>
+            <div id="components" className="form-text">e.g. Resistor , Inductors</div>
           </div>
   
           <button type="submit" className="btn btn-primary">Edit Projects</button>

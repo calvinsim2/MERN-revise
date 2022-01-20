@@ -25,7 +25,7 @@ function AllTheProjects() {
   }, []);
 
   const listProjects = allProjects.map((element,index) => {
-    let myKey3 = index
+    
     return (
       <>
         <ProjectCard
@@ -38,9 +38,9 @@ function AllTheProjects() {
 
   return (
     <div className="allproject-div">
-      <div className="container-sm mx-auto my-3">
+      <div className="container-sm mx-auto">
         {!!user?._id ? <NavLink to={`/projects/new`} >
-          <button type="button" className="btn btn-success mx-2">Add New Project</button>
+          <button type="button" className="btn btn-success mx-2 my-3">Add New Project</button>
         </NavLink> : null}
       </div>
     <div className="container-sm alert alert-primary all-projects">

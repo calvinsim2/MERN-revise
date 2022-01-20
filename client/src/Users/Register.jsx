@@ -89,34 +89,34 @@ function Register() {
   return (
     <div className="register-page">
        
-       <div className="container-sm mx-auto my-3">
+       <div className="w-50 p-3 mx-auto mb-3">
         <NavLink to={"/"}>
-          <button type="button" className="btn btn-success mx-2">Back to Main Page</button>
+          <button type="button" className="btn btn-success mx-2 my-2">Back to Main Page</button>
         </NavLink>
         <NavLink to={"/login"}>
-          <button type="button" className="btn btn-success mx-2">Already a user? Log in here!</button>
+          <button type="button" className="btn btn-success mx-2 my-2">Already a user? Log in here!</button>
         </NavLink>
        </div>
             
       
-      <div className="container-sm alert alert-info rounded">
+      <div className="w-50 p-3 alert alert-info rounded mx-auto">
         <h1>Join us today!</h1>
         <form className="register-form" onSubmit={CreateUser}>
           <div className="mb-3">
               <label htmlFor="username" className="form-label">Username :</label>
-              <input type="text" id="username" name="username" onChange={typeName} />
+              <input type="text" className="form-control" id="username" name="username" onChange={typeName} />
           </div>
           <div className="mb-3">
               <label htmlFor="password" className="form-label">Password :</label>
-              <input type="password"  id="password" name="password" onChange={typePassword}/>
+              <input type="password"  className="form-control" id="password" name="password" onChange={typePassword}/>
           </div>
           <div className="mb-3">
               <label htmlFor="display_name" className="form-label">Display Name :</label>
-              <input type="text" id="display_name" name="display_name" onChange={typeDisplayName} />
+              <input type="text" className="form-control" id="display_name" name="display_name" onChange={typeDisplayName} />
           </div>
           <div className="mb-3">
               <label htmlFor="occupation" className="form-label">Occupation :</label>
-              <input type="text" id="occupation" name="occupation" onChange={typeOccupation} />
+              <input type="text" className="form-control" id="occupation" name="occupation" onChange={typeOccupation} />
           </div>
           <button type="submit" className="btn btn-primary">Register Account</button>
         </form>

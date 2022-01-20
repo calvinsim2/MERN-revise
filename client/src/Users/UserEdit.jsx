@@ -87,10 +87,10 @@ function UserEdit() {
   });
     return (
         <div className="user-edit-div">
-            <div className="container-sm mx-auto my-3">
-                <div className="add-project mx-auto my-3">
+            <div className="container-sm mx-auto mb-3">
+                <div className="add-project mx-auto mb-3">
                     <NavLink to={`/users/${user?._id}`} >
-                        <button type="button" className="btn btn-success mx-2">Return to User Details</button>
+                        <button type="button" className="btn btn-success mx-2 my-3">Return to User Details</button>
                     </NavLink>
                 </div>
 
@@ -100,11 +100,8 @@ function UserEdit() {
                     <label htmlFor="img" className="col-form-label">Image URL Link</label>
                     <input type="text" id="img" name="img" className="form-control" value={formik.values.img}
                         onChange={formik.handleChange}
-                        error={
-                            formik.touched.img && Boolean(formik.errors.img)
-                        }
-                        helperText={formik.touched.img && formik.errors.img} />
-                
+                        />
+                    {formik.touched.img && formik.errors.img ? <p className="text-danger"> {formik.errors.img} </p> : null}
                     <span id="passwordHelpInline" className="form-text">
                     Please provide a working url link for your image.
                     </span>
@@ -114,11 +111,8 @@ function UserEdit() {
                     <label htmlFor="display_name" className="col-form-label">Display Name</label>
                     <input type="text" id="display_name" name="display_name" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.display_name}
                         onChange={formik.handleChange}
-                        error={
-                            formik.touched.display_name && Boolean(formik.errors.display_name)
-                        }
-                        helperText={formik.touched.display_name && formik.errors.display_name} />
-                
+                         />
+                    {formik.touched.display_name && formik.errors.display_name ? <p className="text-danger"> {formik.errors.display_name} </p> : null}
                     <span id="passwordHelpInline" className="form-text">
                     Name which other user view you as.
                     </span>
@@ -128,13 +122,10 @@ function UserEdit() {
                     <label htmlFor="occupation" className="col-form-label">Occupation</label>
                     <input type="text" id="occupation" name="occupation" className="form-control" aria-describedby="passwordHelpInline" value={formik.values.occupation}
                         onChange={formik.handleChange}
-                        error={
-                            formik.touched.occupation && Boolean(formik.errors.occupation)
-                        }
-                        helperText={formik.touched.occupation && formik.errors.occupation}/>
+                        />
                 
                     <span id="passwordHelpInline" className="form-text">
-                    What are you working as currently
+                    What are you working as currently (Optional)
                     </span>
             </div>
             <button type="submit" className="btn btn-primary mx-auto">Update Details</button>

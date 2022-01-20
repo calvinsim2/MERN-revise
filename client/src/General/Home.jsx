@@ -10,7 +10,7 @@ const Home = function(props) {
             <h1 className="display-1 text-center">DIY Electricals</h1>
             <figure className="text-center">
                 <blockquote className="blockquote">
-                    <p>Electrical Engineers, Electrical Enthusiasts, and Students, Unite!</p>
+                    <h4>Electrical Engineers, Electrical Enthusiasts, and Students, Unite!</h4>
                 </blockquote>
             </figure>
         </div>

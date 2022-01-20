@@ -22,6 +22,11 @@ const signToken = (userID) => {
 // SEED 
 
 usersRouter.get("/seed", (req,res) => {
+
+    seedUsers.forEach((user) => {
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+      });
+
     Users.create(seedUsers, (err, addUsers) => {
         if (err) {
             res.status(400).json({error: "Unable to add users"})
